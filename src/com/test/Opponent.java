@@ -21,26 +21,7 @@ public abstract class Opponent extends Entity implements OpponentMoves {
 
     @Override
     public int defense() {
-        return getWeapon2().getDefensePower() + getSpeed();
+        return (getWeapon2().getDefensePower() + getSpeed())/ 2;
     }
 
-    @Override
-    public void flee() {
-
-    }
-
-    @Override
-    public void heal() {
-
-    }
-
-    @Override
-    public void looseFight() {
-
-    }
-
-    @Override
-    public void winFight() {
-
-    }
 }

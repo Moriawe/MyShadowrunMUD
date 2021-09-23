@@ -20,29 +20,4 @@ public class StreetSamurai extends Player {
         return super.specialAttack();
     }
 
-    @Override
-    public int defense() {
-        return super.defense();
-    }
-
-    @Override
-    public void flee() {
-        super.flee();
-    }
-
-    @Override
-    public void drinkPotion() {
-        super.drinkPotion();
-    }
-
-    @Override
-    public void looseFight() {
-        super.looseFight();
-    }
-
-    @Override
-    public void winFight() {
-        super.winFight();
-    }
-
 }

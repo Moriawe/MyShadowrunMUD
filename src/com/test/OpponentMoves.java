@@ -6,10 +6,4 @@ public interface OpponentMoves {
     int specialAttack();
     int defense();
 
-    void flee();
-    void heal();
-
-    void looseFight();
-    void winFight();
-
 }

@@ -9,12 +9,6 @@ public interface PlayerMoves {
     void flee();
     void drinkPotion();
 
-    void looseFight();
-    void winFight();
-
-    void lootGold();
-    void goShop();
-
     void levelUp();
 
 

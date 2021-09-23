@@ -194,9 +194,35 @@ public class Main {
                     noChoice = false; // Something wrong happened, and we are going to run the menu again.
                     break;
             }
-        } while (noChoice = false);
+
+            // If you get killed it is GAME OVER
+            if (player.getHpNow() <= 0) {
+                System.out.println();
+                System.out.println("You were killed by the " + opponent.getName());
+                noChoice = true;
+
+            // If you kill the opponent you loot it's gold AND you get XP!
+            } else if (opponent.getHpNow() <= 0) {
+                int xp = 10; //TODO do certain mobs give different xp?
+                System.out.println();
+                System.out.println("You killed the " + opponent.getName() + " and gained " + xp + "Xp!");
+                System.out.println("You found " + opponent.getGold() + " gold !! ");
+                player.setGold(player.getGold() + opponent.getGold());
+                player.setXP(player.getXP() + xp);
+                noChoice = true;
+
+            // If noone gets killed the fight continues...
+            } else {
+                System.out.println();
+                System.out.println(player.getName() + ": " + player.getHpNow() + " / " + player.getHP());
+                System.out.println(opponent.getName() + ": " + opponent.getHpNow() + " / " + opponent.getHP());
+            }
+
+        } while (noChoice == false);
 
     }
+
+    //TODO Can I make these 4 into ONE singel method?
 
     /* Player attacks */
     public static void firstAttack(Player player, Opponent opponent) {
@@ -207,7 +233,7 @@ public class Main {
         System.out.println("You do " + playerDam + " damage.");
         oppDodge = opponent.defense();
         System.out.println("The " + opponent.getName() + " dodges for " + oppDodge + " points");
-        opponent.setHpNow(playerDam - oppDodge); // Amount of damage done minus the dodgepoints
+        opponent.setHpNow(opponent.getHpNow() - (playerDam - oppDodge)); // Amount of damage done minus the dodgepoints
     }
 
     /* Player special attacks */
@@ -219,7 +245,7 @@ public class Main {
         System.out.println("You do " + playerDam + " damage.");
         oppDodge = opponent.defense();
         System.out.println("The " + opponent.getName() + " dodges for " + oppDodge + " points");
-        opponent.setHpNow(playerDam - oppDodge);
+        opponent.setHpNow(opponent.getHpNow() - (playerDam - oppDodge));
     }
 
     /* Opponent attacks */
@@ -231,7 +257,7 @@ public class Main {
         System.out.println("The " + opponent.getName() + " does " + oppDam + " damage to you");
         playerDodge = player.defense();
         System.out.println("You dodge for " + playerDodge + " points.");
-        player.setHpNow(oppDam - playerDodge);
+        player.setHpNow(player.getHpNow() - (oppDam - playerDodge));
     }
 
     /* Opponent special attacks */
@@ -243,7 +269,7 @@ public class Main {
         System.out.println("The " + opponent.getName() + " does " + oppDam + " damage to you");
         playerDodge = player.defense();
         System.out.println("You dodge for " + playerDodge + " points.");
-        player.setHpNow(oppDam - playerDodge);
+        player.setHpNow(player.getHpNow() - (oppDam - playerDodge));
     }
 
 

@@ -26,22 +26,8 @@ public class EpicMonster extends Opponent {
     }
 
     @Override
-    public void flee() {
-
+    public int defense() {
+        return super.defense();
     }
 
-    @Override
-    public void heal() {
-
-    }
-
-    @Override
-    public void looseFight() {
-
-    }
-
-    @Override
-    public void winFight() {
-
-    }
 }

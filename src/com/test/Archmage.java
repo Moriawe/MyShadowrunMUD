@@ -22,23 +22,4 @@ public class Archmage extends Opponent {
         return super.attack();
     }
 
-    @Override
-    public void flee() {
-
-    }
-
-    @Override
-    public void heal() {
-
-    }
-
-    @Override
-    public void looseFight() {
-
-    }
-
-    @Override
-    public void winFight() {
-
-    }
 }

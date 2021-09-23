@@ -42,7 +42,7 @@ public abstract class Entity {
 
     public void setName(String name) {
         this.name = name;
-    }
+    } //Only used in constructors
 
     public int getLevel() {
         return level;
@@ -102,7 +102,13 @@ public abstract class Entity {
         return hpNow;
     }
 
+    /* Checks so HP won't be set below 0 or over MAX */
     public void setHpNow(int hpNow) {
+        if (hpNow <= 0) {
+            this.hpNow = 0;
+        } else if (hpNow >= getHP()) {
+            this.hpNow = getHP();
+        } else
         this.hpNow = hpNow;
     }
 
@@ -110,8 +116,14 @@ public abstract class Entity {
         return mpNow;
     }
 
+    /* Checks so MP won't be set below 0 or over MAX */
     public void setMpNow(int mpNow) {
-        this.mpNow = mpNow;
+        if (mpNow <= 0) {
+            this.mpNow = 0;
+        } else if (mpNow >= getHP()) {
+            this.mpNow = getHP();
+        } else
+            this.mpNow = mpNow;
     }
 
     public Weapon getWeapon1() {

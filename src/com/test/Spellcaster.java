@@ -21,29 +21,4 @@ public class Spellcaster extends Player {
         return weapon1.getAttackPower() + getWisdom(); //Magic users have different special attacks
     }
 
-    @Override
-    public void flee() {
-        super.flee();
-    }
-
-    @Override
-    public int defense() {
-        return super.defense();
-    }
-
-    @Override
-    public void drinkPotion() {
-        super.drinkPotion();
-    }
-
-    @Override
-    public void looseFight() {
-        super.looseFight();
-    }
-
-    @Override
-    public void winFight() {
-        super.winFight();
-    }
-
 }
