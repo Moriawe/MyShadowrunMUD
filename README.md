@@ -29,8 +29,8 @@ Healing, Speed, Strength and Wisdom.
 
 
 TODO list
-Better balancing on entity stats :)
-Balancing up goldloot.
+Better balancing on entity stats :) <BR>
+Balancing up goldloot. <BR>
 Let the enemies level up as you do so you can meet harder resistans / OR / meet different enemes depending on level.
 Have a random value that will make the enemy use either attack1 or attack2.
 Let the store have it's own stock and treasury so it can run out of items.
