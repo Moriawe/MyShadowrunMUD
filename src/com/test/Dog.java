@@ -3,7 +3,7 @@ package com.test;
 public class Dog extends Opponent {
 
     public Dog(int gold) {
-        super("Dog", 1, 12, 8, 2, 0, 10, gold);
+        super("Dog", 1, 6, 4, 2, 0, 10, gold);
         weapon1 = new Weapon("bite", "melee attack", "glimmering wet teeth", 2, 2,1);
         weapon2 = new Weapon("claw", "melee attack", "razorsharp claws", 1, 1, 0);
     }

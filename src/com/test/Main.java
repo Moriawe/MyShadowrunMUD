@@ -208,7 +208,8 @@ public class Main {
                 System.out.println("You killed the " + opponent.getName() + " and gained " + xp + "Xp!");
                 System.out.println("You found " + opponent.getGold() + " gold !! ");
                 player.setGold(player.getGold() + opponent.getGold());
-                player.setXP(player.getXP() + xp);
+                Level.checkLevel(player, xp);
+                player.addXP(xp);
                 noChoice = true;
 
             // If noone gets killed the fight continues...
