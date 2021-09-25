@@ -17,7 +17,7 @@ public class Thug extends Opponent {
     @Override
     public int specialAttack() {
         System.out.println("The thug raises a gun and fires at you.");
-        return super.attack();
+        return super.specialAttack();
     }
 
 }

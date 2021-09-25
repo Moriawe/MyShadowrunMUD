@@ -5,22 +5,21 @@ public class EpicMonster extends Opponent {
     Weapon staff;
 
     public EpicMonster(int gold) {
-        super("Archmage", 5, 15, 20, 15, 100, 200, gold);
-        staff = new Weapon("Staff", "ranged attack","a long gnarled staff", 3, 3, 2);
+        super("Cyborg troll", 5, 15, 20, 15, 100, 200, gold);
+        weapon1 = new Weapon("Gattling gun", "ranged attack","Multibarrel deathmachine", 3, 3, 2);
+        weapon2 = new Weapon("Razor axe", "melee", "razorsharp twohanded axe", 5, 4, 2);
     }
 
     @Override
     public int attack() {
-        System.out.println("The mage swings his staff over his head, mumbles a few words and a purple glowing ball appears and speeds towards you.");
-        int totalAttackPower = staff.getAttackPower() + getWisdom(); //I could write it all in the return state but this is easier to read.
-        return totalAttackPower;
+        System.out.println("Six rotating barrels spew hot lead at you.");
+        return super.attack();
     }
 
     @Override
     public int specialAttack() {
-        System.out.println("The mage smacks you in the head with his staff");
-        int totalAttackpower = staff.getAttackPower() + getStrength();
-        return totalAttackpower;
+        System.out.println("With a roar the troll attacks you with his massive axe!");
+        return super.specialAttack();
     }
 
     @Override

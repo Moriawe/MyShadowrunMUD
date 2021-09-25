@@ -3,7 +3,7 @@ package com.test;
 public class HealingPotion extends Potion {
 
     public HealingPotion() {
-        super("Healing potion", "red", 10);
+        super("Healing potion", "red", 40);
     }
 
     public void usePotion(Player player) {
