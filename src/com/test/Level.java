@@ -42,6 +42,7 @@ public class Level {
 
         } else if (player.getLevel() == 9 && player.getXP() + xp >= lvl10) {
             player.levelUp();
+            System.out.println("Gratz! You won the game!");
         }
 
     }

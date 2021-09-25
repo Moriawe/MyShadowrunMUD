@@ -1,7 +1,5 @@
 package com.test;
 
-//TODO Randomgenerator that decides how much gold an archmage has. depending on level
-
 public class EpicMonster extends Opponent {
 
     Weapon staff;

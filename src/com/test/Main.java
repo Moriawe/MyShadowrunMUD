@@ -7,7 +7,6 @@ public class Main {
 
     static Random rand = new Random();
     static Scanner sc = new Scanner(System.in);
-    static Opponent opponent;
 
     /* - MAIN - startar igång spelet genom att köra de två menyerna. */
     public static void main(String[] args) {
@@ -20,7 +19,7 @@ public class Main {
 
     }
 
-    /* 1 * Startmenyn som inititerar spelet. */
+    /* 1 * Startmenyn som initierar spelet. */
     public static Player startMeny() {
         String name;
         Player player;
@@ -105,180 +104,25 @@ public class Main {
 
     }
 
+    /* 4 * When the player chose to go on adventure and 10% of the time, nothing happens. */
+    public static void goOnAdventure(Player player) {
 
-        public static void outOfTheHouse() {
-            System.out.println("“It's a dangerous business, Frodo, going out your door. You step onto the road, and if you don't keep your feet, there's no knowing where you might be swept off to.”");
-        }
-
-        public static void goOnAdventure(Player player) {
-
-            // 10% chance that nothing happens.
-            // nextDouble returns the next pseudorandom, uniformly distributed double value between 0.0 and 1.0 from this random number generator's sequence.
-            if ( randomDouble() < 0.1) {
-                peaceful();
-                // 90% chance of combat
-            } else {
-                System.out.println("Suddenly, a hostile creature appears!");
-                pressEnter(); //Press Enter to continue
-                initCombat(player);
-            }
-        }
-
-    /* 4 *  Combat between a player and an opponent. The player is taken in as an argument while the opponent is freshly created for just this combat session. */
-    public static void initCombat(Player player) {  //TODO I made the opponent a classvariable, dunno if good. If it works, why not player as one to?
-
-        Double rand = randomDouble();
-
-        if (rand < 0.3) {
-            opponent = new Dog(randomInt(0, 5)); // Making a new dog, with between 0 - 5 gold
-        } else if (rand < 0.6) {
-            opponent = new Thug(randomInt(10, 25)); // Making a new thug, with between 10 - 25 gold
-        } else if (rand < 0.9) {
-            opponent = new Archmage(randomInt(20, 50)); // Making a new archmage, with between 20 - 50 gold
+        if ( randomDouble() < 0.1) {
+             peaceful();
+             // 90% chance of combat
         } else {
-            opponent = new EpicMonster(randomInt(50, 200)); // Making a new epicMonster, with between 50 - 200 gold
+             System.out.println("Suddenly, a hostile creature appears!");
+             pressEnter(); //Press Enter to continue
+             Combat.initCombat(player);
         }
-
-        System.out.println("It is a " + opponent.getName());
-
-        combatMeny(player, opponent);
     }
 
-
-    /* 5 * This is the combatmenu that pops up between every beating. */
-    public static void combatMeny(Player player, Opponent opponent) {
-
-        boolean noChoice;
-
-        do {
-            System.out.println();
-            System.out.println("What would you like to do?");
-            System.out.println("1. Attack!");
-            System.out.println("2. Special attack!");
-            System.out.println("3. Drink a potion.");
-            System.out.println("4. Flee!");
-            System.out.println("E. Exit the game.");
-            System.out.println();
-
-            char choice = scanChar();
-
-            switch (choice) {
-                case '1':
-                    firstAttack(player, opponent);
-                    oppFirstAttack(player, opponent);
-                    noChoice = false; // I want to fight now and then come back to this menu
-                    break;
-                case '2':
-                    secondAttack(player, opponent);
-                    oppSecondAttack(player, opponent);
-                    noChoice = false; // I want to fight now and then come back to this menu
-                    break;
-                case '3':
-                    player.drinkPotion();
-                    noChoice = false; // I want to come back to this meny after drinking a potion
-                    break;
-                case '4':
-                    player.flee();
-                    noChoice = true; // I want to run and leave this menu.
-                    break;
-                case 'E':
-                    System.out.println("Thanks for playing!");
-                    noChoice = true; // I want to quit the game and leave this menu.
-                    break;
-                case 'e':
-                    System.out.println("Thanks for playing!");
-                    noChoice = true; // I want to quit the game and leave this menu.
-                    break;
-                default:
-                    System.out.println("Error, try again!");
-                    noChoice = false; // Something wrong happened, and we are going to run the menu again.
-                    break;
-            }
-
-            // If you get killed it is GAME OVER
-            if (player.getHpNow() <= 0) {
-                System.out.println();
-                System.out.println("You were killed by the " + opponent.getName());
-                noChoice = true;
-
-            // If you kill the opponent you loot it's gold AND you get XP!
-            } else if (opponent.getHpNow() <= 0) {
-                int xp = 10; //TODO do certain mobs give different xp?
-                System.out.println();
-                System.out.println("You killed the " + opponent.getName() + " and gained " + xp + "Xp!");
-                System.out.println("You found " + opponent.getGold() + " gold !! ");
-                player.setGold(player.getGold() + opponent.getGold());
-                Level.checkLevel(player, xp);
-                player.addXP(xp);
-                noChoice = true;
-
-            // If noone gets killed the fight continues...
-            } else {
-                System.out.println();
-                System.out.println(player.getName() + ": " + player.getHpNow() + " / " + player.getHP());
-                System.out.println(opponent.getName() + ": " + opponent.getHpNow() + " / " + opponent.getHP());
-            }
-
-        } while (noChoice == false);
-
-    }
-
-    //TODO Can I make these 4 into ONE singel method?
-
-    /* Player attacks */
-    public static void firstAttack(Player player, Opponent opponent) {
-        int oppDodge;
-        int playerDam;
-
-        playerDam = player.attack();
-        System.out.println("You do " + playerDam + " damage.");
-        oppDodge = opponent.defense();
-        System.out.println("The " + opponent.getName() + " dodges for " + oppDodge + " points");
-        opponent.setHpNow(opponent.getHpNow() - (playerDam - oppDodge)); // Amount of damage done minus the dodgepoints
-    }
-
-    /* Player special attacks */
-    public static void secondAttack(Player player, Opponent opponent) {
-        int oppDodge;
-        int playerDam;
-
-        playerDam = player.specialAttack();
-        System.out.println("You do " + playerDam + " damage.");
-        oppDodge = opponent.defense();
-        System.out.println("The " + opponent.getName() + " dodges for " + oppDodge + " points");
-        opponent.setHpNow(opponent.getHpNow() - (playerDam - oppDodge));
-    }
-
-    /* Opponent attacks */
-    public static void oppFirstAttack(Player player, Opponent opponent) {
-        int oppDam;
-        int playerDodge;
-
-        oppDam = opponent.attack();
-        System.out.println("The " + opponent.getName() + " does " + oppDam + " damage to you");
-        playerDodge = player.defense();
-        System.out.println("You dodge for " + playerDodge + " points.");
-        player.setHpNow(player.getHpNow() - (oppDam - playerDodge));
-    }
-
-    /* Opponent special attacks */
-    public static void oppSecondAttack(Player player, Opponent opponent) {
-        int oppDam;
-        int playerDodge;
-
-        oppDam = opponent.specialAttack();
-        System.out.println("The " + opponent.getName() + " does " + oppDam + " damage to you");
-        playerDodge = player.defense();
-        System.out.println("You dodge for " + playerDodge + " points.");
-        player.setHpNow(player.getHpNow() - (oppDam - playerDodge));
-    }
-
-
+    /* 5 *  Some random stuff that happens if there is no fight. */
     public static void peaceful() {
 
             double event = randomDouble();
             if (event < 0.2) {
-                System.out.println("You walk down the roads of Neo Tokyo looking at all the random people walking by.");
+                System.out.println("You walk down the roads of Neo-Tokyo looking at all the random people walking by.");
             } else if (event < 0.4) {
                 System.out.println("A few pigeons lands on the ground next to you and start eating on a left over sandwich.");
             } else if (event < 0.6) {

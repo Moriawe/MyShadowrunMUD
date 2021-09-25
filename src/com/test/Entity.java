@@ -132,7 +132,7 @@ public abstract class Entity {
 
     public void setWeapon1(Weapon weapon1) {
         this.weapon1 = weapon1;
-    }
+    } //Only used in constructors
 
     public Weapon getWeapon2() {
         return weapon2;
@@ -140,5 +140,5 @@ public abstract class Entity {
 
     public void setWeapon2(Weapon weapon2) {
         this.weapon2 = weapon2;
-    }
+    } //Only used in constructors
 }

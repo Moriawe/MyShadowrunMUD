@@ -6,18 +6,21 @@ public abstract class Player extends Entity implements PlayerMoves {
 
     //TODO write out objects in the potionbag
     //TODO Exceptions när potionbag är empty
+    //TODO When used the potion should be removed. Needs to have a method of its own. Contains!!
 
     String type; // What is your profession?
     int experiencePoints; // XP
-    ArrayList<Potion> potionBag = new ArrayList<Potion>(); // bag of potions
+    ArrayList<Potion> potionBag; // bag of potions
 
     //Constructor  (making the variables shorter, setting XP=0 for a starter player)
     public Player(String name, String type, int spe, int str, int wis, int mp, int hp) {
         super(name, spe, str, wis, mp, hp, 0);
+        potionBag = new ArrayList<>();
         this.type = type;
         this.experiencePoints = 0;
     }
 
+    //TODO Make it show how much xp needed for next level
     public static void toString(Player player) {
         System.out.println("* * * * * * * *");
         System.out.println("* Name: " + player.getName());
@@ -57,8 +60,16 @@ public abstract class Player extends Entity implements PlayerMoves {
     }
 
     @Override
-    public void drinkPotion() {
+    public void drinkPotion(String potionType) {
 
+        for (Potion potion : potionBag) {
+            if (potion.getType().contains(potionType)) {
+                potion.usePotion(this);
+                potionBag.remove(potion);
+                return;
+            }
+        }
+        System.out.println("You don't have any " + potionType + " potions.");
     }
 
     /* When you level up you get +1 on Speed, Strength and Wisdom. You also get +10 HP and regain all lost HP. */
@@ -84,54 +95,12 @@ public abstract class Player extends Entity implements PlayerMoves {
     // Getters & Setters
 
     public int getXP() {
-
         return experiencePoints;
     }
 
     public void setXP(int xp) {
         this.experiencePoints = xp;
     }
-
-    /* My leveling system.
-        int lvl1 = 10;
-        int lvl2 = lvl1 + 15;
-        int lvl3 = lvl2 + 20;
-        int lvl4 = lvl3 + 25;
-        int lvl5 = lvl4 + 30;
-        int lvl6 = lvl5 + 35;
-        int lvl7 = lvl6 + 40;
-        int lvl8 = lvl7 + 45;
-        int lvl9 = lvl8 + 50;
-        int lvl10 = lvl9 + 60;
-
-        if (getLevel() == 1 && this.experiencePoints + xp >= lvl2) {
-            levelUp();
-
-        } else if (getLevel() == 2 && this.experiencePoints + xp >= lvl3) {
-            levelUp();
-
-        } else if (getLevel() == 3 && this.experiencePoints + xp >= lvl4) {
-            levelUp();
-
-        } else if (getLevel() == 4 && this.experiencePoints + xp >= lvl5) {
-            levelUp();
-
-        } else if (getLevel() == 5 && this.experiencePoints + xp >= lvl6) {
-            levelUp();
-
-        } else if (getLevel() == 6 && this.experiencePoints + xp >= lvl7) {
-            levelUp();
-
-        } else if (getLevel() == 7 && this.experiencePoints + xp >= lvl8) {
-            levelUp();
-
-        } else if (getLevel() == 8 && this.experiencePoints + xp >= lvl9) {
-            levelUp();
-
-        } else if (getLevel() == 9 && this.experiencePoints + xp >= lvl10) {
-            levelUp();
-        }*/
-
 
     public String getType() {
         return type;

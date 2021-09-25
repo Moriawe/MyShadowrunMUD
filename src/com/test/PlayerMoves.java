@@ -7,7 +7,8 @@ public interface PlayerMoves {
     int defense();
 
     void flee();
-    void drinkPotion();
+
+    void drinkPotion(String potion);
 
     void levelUp();
 
