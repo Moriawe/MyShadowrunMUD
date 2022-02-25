@@ -1,5 +1,5 @@
 # MyShadowrunMUD<BR>
-Schoolassignment - Labb3<BR>
+Android development - Labb 3 (27/9 - 2021) <BR>
 I made his "MUD" for a schoolassignment in september 2021 after learning java for about a month.<BR>
 <BR><BR>
 You get to chose your players name and profession<BR>
